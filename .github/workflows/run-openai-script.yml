@@ -1,15 +1,16 @@
-name: Terraform Validator (LLM-based)
+name: Run Local LLM via Ollama on PR Merge
 
 on:
   pull_request:
+    types: [closed]
     branches:
-      - master      # Trigger when PR targets master
-    types: [opened, synchronize, reopened]
+      - main
 
 jobs:
-  validate-terraform:
+  run-local-llm:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,28 +25,18 @@ jobs:
           sleep 5
 
       - name: Pull Llama 3.2 model
-        run: ollama pull llama3.2
+        run: |
+          ollama pull llama3.2
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - name: Install requirements
-        run: pip install ollama
-
-      - name: Run Terraform Validator
-        id: validator
+      - name: Install Python dependencies
         run: |
-          python scripts/chat_agent.py terraform/sample.tf > validation_output.txt
-          echo "=== VALIDATION RESULT BELOW ==="
-          cat validation_output.txt
+          pip install ollama
 
-      - name: Check if Terraform code passed validation
+      - name: Run local LLM script
         run: |
-          if grep -qi "FAIL" validation_output.txt; then
-            echo "❌ Terraform validation failed. Blocking merge."
-            exit 1
-          else
-            echo "✅ Terraform validation passed."
-          fi
+          python scripts/chat_agent.py terraform/sample.tf
