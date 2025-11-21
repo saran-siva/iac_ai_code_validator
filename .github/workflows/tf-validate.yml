@@ -37,7 +37,7 @@ jobs:
       - name: Run Terraform Validator
         id: validator
         run: |
-          python scripts/tf_validator.py terraform/sample.tf > validation_output.txt
+          python scripts/chat_agent.py terraform/sample.tf > validation_output.txt
           echo "=== VALIDATION RESULT BELOW ==="
           cat validation_output.txt
 
