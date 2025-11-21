@@ -45,7 +45,7 @@ def main():
     print("🔍 Validating Terraform code with Llama3.2...\n")
     result = validate_terraform(tf_content)
 
-    print("===== Terraform Validation Report =====")
+    print("===== Terraform Validation Report summary =====")
     print(result)
     print("=======================================")
 

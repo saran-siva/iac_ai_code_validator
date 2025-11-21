@@ -3,7 +3,7 @@ name: Terraform Validator (LLM-based)
 on:
   pull_request:
     branches:
-      - master      # Trigger when PR targets master
+      - main      # Trigger when PR targets master
     types: [opened, synchronize, reopened]
 
 jobs:
