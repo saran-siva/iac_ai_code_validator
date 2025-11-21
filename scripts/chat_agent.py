@@ -3,16 +3,20 @@ import ollama
 
 def validate_terraform(tf_content):
     prompt = f"""
-You are a Terraform expert. Analyze the following Terraform code and provide:
+You are a Terraform expert. Analyze the following Terraform code.
 
-1. **Syntax issues**
-2. **Security issues**
-3. **Hardcoded or non-parameterized values**
-4. **Missing tags**
-5. **Inefficient or redundant blocks**
-6. **Naming convention issues**
-7. **Optimization suggestions**
-8. **A pass/fail verdict**
+If issues exist, your final verdict **must include the word FAIL**.
+If no issues exist, final verdict must include **PASS**.
+
+Provide:
+
+1. Syntax issues  
+2. Security findings  
+3. Hardcoded values  
+4. Missing tags  
+5. Naming issues  
+6. Optimization suggestions  
+7. Final PASS/FAIL verdict  
 
 Terraform Code:
 {tf_content}
