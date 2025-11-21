@@ -1,7 +1,7 @@
 import os
 from openai import OpenAI
 
-client = OpenAI(api_key="sk-0bNhRn0thfZzxX4bCZQB8Q")
+client = OpenAI(api_key="sk-YGT0PO9HMB_kV4tZr8x7pQ")
 
 def main():
     print("Running OpenAI Script after PR Merge...")
