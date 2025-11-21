@@ -10,7 +10,7 @@ def main():
         model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a pipeline automation AI."},
-            {"role": "user", "content": "A PR was merged. Provide a summary action."}
+            {"role": "user", "content": "A PR was merged. Provide a summary action and detailed info about the PR."}
         ]
     )
 
