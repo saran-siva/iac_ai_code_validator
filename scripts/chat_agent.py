@@ -1,21 +1,18 @@
-import os
-from openai import OpenAI
-
-client = OpenAI(api_key="sk-YGT0PO9HMB_kV4tZr8x7pQ")
+import ollama
 
 def main():
-    print("Running OpenAI Script after PR Merge...")
+    print("Running Local LLM via Ollama after PR merge...")
 
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
+    response = ollama.chat(
+        model="llama3.2",
         messages=[
-            {"role": "system", "content": "You are a pipeline automation AI."},
-            {"role": "user", "content": "A PR was merged. Provide a summary action and detailed info about the PR."}
+            {"role": "system", "content": "You are an automation bot."},
+            {"role": "user", "content": "A PR was merged. Provide a summary and next steps."}
         ]
     )
 
-    print("OpenAI Response:")
-    print(response.choices[0].message["content"])
+    print("\nLLM Response:")
+    print(response["message"]["content"])
 
 if __name__ == "__main__":
     main()
