@@ -39,4 +39,4 @@ jobs:
 
       - name: Run local LLM script
         run: |
-          python scripts/chat_agent.py
+          python scripts/chat_agent.py terraform/sample.tf
